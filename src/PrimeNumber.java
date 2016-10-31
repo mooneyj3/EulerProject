@@ -8,19 +8,21 @@ public class PrimeNumber {
     // static counter
     private static int numberOfPrimes = 0;
 
+
     public static boolean isPrime (int num) {
-        // write method to get identify a prime number
-        // count number of true prime numbers
-        if (num == 2) {
-            numberOfPrimes++;
-            return true;
-        }
+        boolean isPrime = findIsPrime(num);
+        if (isPrime == true) numberOfPrimes++;
+        return isPrime;
+    }
+
+    private static boolean findIsPrime(int num) {
+        if (num <= 1) return false;
+        if (num == 2) return true;
         for (int i = 2; i < num; i++) {
             if (num % i == 0) {
                 return false;
             }
         }
-        numberOfPrimes++;
         return true;
     }
 

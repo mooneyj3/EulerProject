@@ -12,7 +12,7 @@ public class Problem7 {
 
         while (primes <= 10001) {
             counter++;
-            if (isPrime(counter)) {
+            if (PrimeNumber.isPrime(counter)) {
                 primes++;
                 //System.out.println(counter);
             }
@@ -23,14 +23,7 @@ public class Problem7 {
         System.out.println("Answer: " + counter);
     }
 
-    public static boolean isPrime(int num) {
-        for (int i = 2; i < num; i++) {
-            if (num % i == 0) {
-                return false;
-            }
-        }
-        return true;
-    }
+
 
 
 
