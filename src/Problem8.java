@@ -31,31 +31,49 @@ public class Problem8 {
 
 
     public static void main(String[] args) {
-        int answer = 0;
 
-        for (int i = 88; i < thousand.length() - 12; i++) {
-            int product = 1;
-            String stringAt = "";
+        long answer = 1;
+        int strLength = thousand.length();
+        int currentIndex = 0;
 
-            for (int j = i; j < i + 13; j++) {
-                //8694788518438
-                int valueAt = Integer.parseInt(thousand.substring(j,j+1));
-                stringAt += thousand.charAt(j);
-                product *= valueAt;
+        int runCounter = 0;
+
+
+        String currentString;
+
+        while (currentIndex < strLength - 13) {
+            currentString = thousand.substring(currentIndex, currentIndex+13);
+
+            if (currentString.contains("0")) {
+                currentIndex += currentString.lastIndexOf('0') + 1;
+                //currentIndex++;
             }
 
-            if (product != 0) System.out.println(stringAt + " product is " + product);
-
-            if (product > answer) {
-                answer = product;
-                //System.out.println(stringAt + " product is " + answer);
+            else {
+                long temp = getProduct(currentString);
+                if (temp > answer) answer = temp;
+                currentIndex++;
             }
+            runCounter++;
 
         }
 
         System.out.println("Answer: " + answer);
-        // I'm getting  2091059712
-        // should be    23514624000
+        System.out.println("# of strings analyzed: " + runCounter);
+    }
+
+    public static long getProduct(String currentString) {
+        int currChar = 0;
+        long result = 1;
+
+        int currStringLength = currentString.length();
+
+        for (int i = 0; i < currStringLength; i++) {
+            currChar = Integer.parseInt(currentString.substring(i,i+1));
+            result *= currChar;
+        }
+
+        return result;
 
     }
 
